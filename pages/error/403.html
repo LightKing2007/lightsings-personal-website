@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>403 - 禁止访问</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", system-ui, sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        background: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+        color: #333;
+      }
+
+      .container {
+        text-align: center;
+        max-width: 600px;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+
+      .error-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        font-weight: 600;
+        color: #2d3748;
+      }
+
+      .error-description {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        color: #4a5568;
+      }
+
+      .actions {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 25px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 12px 30px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+      }
+
+      .btn-primary {
+        background: #4361ee;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #3a56e4;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #4361ee;
+        border: 2px solid #4361ee;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(67, 97, 238, 0.05);
+        transform: translateY(-2px);
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .icon {
+        font-size: 5rem;
+        margin-bottom: 20px;
+        color: #ff4b2b;
+        opacity: 0.8;
+      }
+
+      .footer {
+        margin-top: 40px;
+        font-size: 0.9rem;
+        color: #718096;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 25px;
+          margin: 20px;
+        }
+
+        .actions {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .btn {
+          width: 100%;
+          max-width: 260px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="icon">🚫</div>
+      <h1 class="error-title">禁止访问</h1>
+      <p class="error-description">抱歉，您没有权限访问此资源,可能是由于您的账户权限限制或系统配置规则导致。</p>
+
+      <div class="actions">
+        <button class="btn btn-primary" onclick="goBack()">返回上一页</button>
+        <button class="btn btn-secondary" onclick="goHome()">访问首页</button>
+      </div>
+
+      <div class="footer">
+        <p>
+          需要帮助？请
+          <a href="javascript:void(0)" onclick="contactSupport()" style="text-decoration: none; color: #4361ee">联系管理员 </a>
+          或检查您的访问权限
+        </p>
+      </div>
+    </div>
+
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+
+      function goHome() {
+        window.location.href = "https://www.lightking.me";
+      }
+
+      function contactSupport() {
+        // 在实际应用中替换为您的支持邮箱
+        const email = "support@example.com";
+        const subject = "403 禁止访问问题";
+        const body = "我在尝试访问页面时遇到了403错误, 页面URL是: " + window.location.href;
+        window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+
+      // 添加键盘快捷键支持
+      document.addEventListener("keydown", (e) => {
+        // 按ESC返回上一页
+        if (e.key === "Escape") goBack();
+        // 按H键访问首页
+        if (e.key === "h" || e.key === "H") goHome();
+      });
+    </script>
+  </body>
+</html>
