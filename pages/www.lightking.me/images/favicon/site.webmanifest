@@ -1,21 +1,15 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "LightKing",
+  "short_name": "LightKing",
   "icons": [
     {
-      "src": "/web-app-manifest-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "/web-app-manifest-512x512.png",
-      "sizes": "512x512",
+      "src": "/LightKing-App.png",
+      "sizes": "2000x2000",
       "type": "image/png",
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#000033",
+  "background_color": "#000033",
   "display": "standalone"
 }
