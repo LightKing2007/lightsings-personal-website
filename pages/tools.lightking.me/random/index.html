@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>网页随机数抽取器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="随机数、抽奖、生成器" />
+    <meta name="author" content="LightKing" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="javascript" href="script.js" />
+  </head>
+  <body>
+    <h1>🎲 网页随机数抽取器</h1>
+    <div class="box">
+      <div class="row">
+        <label>最小值</label>
+        <input id="min" type="number" value="1" />
+      </div>
+      <div class="row">
+        <label>最大值</label>
+        <input id="max" type="number" value="100" />
+      </div>
+      <div class="row">
+        <label>抽取个数</label>
+        <input id="count" type="number" value="5" />
+      </div>
+      <div class="row">
+        <label>允许重复</label>
+        <input id="dup" type="checkbox" />
+      </div>
+      <button onclick="draw()">开始抽取</button>
+
+      <div id="result"></div>
+    </div>
+  </body>
+</html>
