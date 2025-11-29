@@ -1,0 +1,90 @@
+footer {
+    mix-blend-mode: difference;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 0.9rem;
+    color: #666;
+    /* 统一颜色 */
+    font-family: var(--font-mono);
+}
+
+footer img {
+    width: 14px;
+    height: 16px;
+    padding-bottom: 2px;
+    vertical-align: middle;
+    margin-right: 4px;
+
+}
+
+.footer-links-group {
+    margin-bottom: 10px;
+}
+
+/* 链接之间的间距，保持简洁 */
+.footer-links-group a,
+.legal-info a {
+    margin: 0 5px;
+    color: #999;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links-group a:hover,
+.legal-info a:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+/* 标签文字与链接的间距 */
+.footer-links-group .footer-label {
+    margin-right: 8px;
+    color: #777;
+}
+
+/* 备案信息与版权信息上方的间距 */
+.legal-info {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* --- footer.css 响应式调整 --- */
+
+/* Tablet (屏幕宽度 <= 1024px) */
+@media (max-width: 1024px) {
+    footer {
+        font-size: 0.85rem;
+    }
+
+    .footer-links-group a,
+    .legal-info a {
+        margin: 0 4px;
+    }
+}
+
+/* Mobile (屏幕宽度 <= 768px) */
+@media (max-width: 768px) {
+    footer {
+        padding-top: 10px;
+        font-size: 0.8rem;
+    }
+
+    /* 链接分组居中并堆叠，提高可点击性 */
+    .footer-links-group,
+    .legal-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 增加垂直间距 */
+    .footer-links-group a,
+    .legal-info a {
+        margin: 5px 0;
+    }
+
+    .legal-info {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}

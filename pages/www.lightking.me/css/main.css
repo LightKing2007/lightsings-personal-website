@@ -1,109 +1,230 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    /* 使用你在 CSS 变量中定义的名称 */
+    src: url('../font/JetBrainsMono-Regular.ttf') format('truetype');
+    /* 可添加更多格式以提高兼容性 */
+    font-weight: 400;
+    /* 匹配你在 CSS 中使用的字重 */
+    font-style: normal;
+    font-display: swap;
+    /* 推荐：确保在加载时显示备用字体 */
+}
+
 :root {
-    --primary-color: #1a237e;
-    /* 深蓝 */
-    --secondary-color: #ffc107;
-    /* 暖黄 */
-    --text-color: #333;
-    --light-bg: #f5f5f5;
-    --dark-bg: #121212;
-    --dark-text: #e0e0e0;
+    --color-dark: #050505;
+    --color-light: #f5f5f5;
+    --font-sans: "Inter", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    color: var(--text-color);
+    font-family: var(--font-sans);
+    color: var(--color-light);
+    overflow-x: hidden;
     line-height: 1.6;
+    scroll-behavior: smooth;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-h1,
-h2,
-h3 {
-    font-family: 'Playfair Display', serif;
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
-.navbar {
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+section {
+    padding: 10vh 10vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('desk.jpg');
-    background-size: cover;
-    color: white;
+h2 {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -2px;
 }
 
-.project-card {
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+/* --- 导航栏 --- */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    mix-blend-mode: difference;
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
+.logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
 }
 
-.polaroid {
-    background: white;
-    padding: 15px 15px 60px 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: rotate(2deg);
-    transition: transform 0.3s ease;
+.logo img {
+    height: 40px;
+    width: 40px;
+    vertical-align: middle;
+    margin-right: 8px;
 }
 
-.polaroid:hover {
-    transform: rotate(0deg) scale(1.05);
+.nav-links a {
+    text-decoration: none;
+    margin-left: 3rem;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
 }
 
-.btn {
-    padding: 10px 20px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    /* 调整下划线距离文字的垂直位置 */
+    left: 0;
+
+    /* 下划线的尺寸和颜色 */
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-light);
+    /* 颜色与文字颜色保持一致 */
+
+    /* 2. 初始状态：宽度为 0 或缩放为 0，使其不可见 */
+    transform: scaleX(0);
+
+    /* 3. 关键：添加过渡动画 */
+    transition: transform 0.3s ease-out;
+
+    /* 确保动画从中心向两侧展开 */
+    transform-origin: center;
 }
 
-.btn.primary {
-    background-color: var(--primary-color);
-    color: white;
+.nav-links a:hover::after {
+    transform: scaleX(1);
 }
 
-.btn.secondary {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
+.nav-links a:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    color: #FFFFFF;
 }
 
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.menu-toggle {
+    display: none;
+    /* 默认隐藏 */
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    /* 确保在菜单之上 */
 }
 
-/* 夜间模式 */
-.dark-mode {
-    background-color: var(--dark-bg);
-    color: var(--dark-text);
+.hamburger-line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: var(--color-light);
+    /* 亮色线条 */
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.dark-mode .navbar {
-    background-color: var(--dark-bg);
-}
-
-.dark-mode .project-card,
-.dark-mode .polaroid {
-    background-color: #1e1e1e;
-    color: var(--dark-text);
-}
-
+/* --- 响应式布局：手机视图 (屏幕宽度 <= 768px) --- */
 @media (max-width: 768px) {
-    .navbar {
+
+    /* 1. 显示切换按钮 */
+    .menu-toggle {
+        display: block;
+        /* 在 mix-blend-mode: difference 下，按钮颜色会自适应 */
+        color: var(--color-light);
+    }
+
+    .nav-links {
+        position: fixed;
+        mix-blend-mode: normal;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 50px);
+        background-color: var(--color-dark);
+
+
+        /* 3. 居中对齐：实现所有链接块垂直水平居中 */
         flex-direction: column;
+        justify-content: center;
+        /* 垂直居中 */
+        align-items: center;
+        /* 水平居中 */
+
+        /* 提高 Z-index，确保它覆盖所有页面内容 */
+        z-index: 999;
+
+        /* 保持隐藏/显示过渡 */
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.4s ease, visibility 0.4s;
+
+        padding: 0;
     }
 
-    .project-grid {
-        grid-template-columns: 1fr;
+    .nav-links.active {
+        visibility: visible;
+        opacity: 1;
     }
 
-    .about-content {
-        flex-direction: column;
+    /* 4. 链接自身样式调整：各自一行，水平居中，文字右对齐 */
+    .nav-links a {
+        display: block;
+        /* 确保链接占据整行空间 */
+        margin: 20px auto;
+        /* 自动边距实现链接块水平居中 */
+        font-size: 1.5rem;
+
+        /* 在纯黑背景下，文字颜色应为 --color-light */
+        color: var(--color-light);
+
+        /* 5. 宽度控制：限制链接区域最大宽度 */
+        max-width: 400px;
+        /* 限制链接区域最大宽度 */
+        width: 80%;
+
+        /* 6. 文字右对齐 */
+        text-align: right;
     }
 
-    .polaroid-grid {
-        grid-template-columns: 1fr;
+    /* 汉堡按钮颜色确保在深色菜单背景上可见 */
+    .menu-toggle.active .hamburger-line {
+        background-color: var(--color-light);
+    }
+
+    /* 5. 汉堡图标动画：变成 'X' */
+    .menu-toggle.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active .hamburger-line:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active .hamburger-line:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
     }
 }

@@ -1,0 +1,147 @@
+.type-body {
+    color: var(--color-light);
+    font-family: "Inter", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.typing-text-wrap {
+    /* 关键：设置相对定位，允许文本居中 */
+    position: relative;
+    text-align: center;
+}
+
+.typing-line {
+    display: flex;
+    justify-content: center;
+    /* 使文本和光标的整体块居中 */
+    align-items: center;
+    /* 垂直居中对齐文本和光标 */
+    white-space: nowrap;
+    /* 确保不换行 */
+}
+
+/* 文本容器：关键样式 */
+.typing-text-container {
+    display: block;
+    /* 确保在 flex 容器内行为正确 */
+    overflow: hidden;
+    /* white-space: nowrap; 移动到 .typing-line */
+    min-height: 5.5rem;
+    will-change: width;
+    width: 0;
+    /* 初始宽度为 0 */
+}
+
+.typing-text {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 700;
+    display: inline;
+    background-position: 0 0, 0 0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+
+.cursor {
+    border-radius: 10px;
+    display: inline-block;
+    width: 6px;
+    height: 5rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    vertical-align: middle;
+    margin-left: 5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    color: #777;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    opacity: 0.5;
+    animation: fadeUp 2s infinite;
+}
+
+@keyframes fadeUp {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translateY(10px);
+        opacity: 0.2;
+    }
+}
+
+/* --- type.css 响应式调整 --- */
+
+/* Tablet (屏幕宽度 <= 1024px) */
+@media (max-width: 1024px) {
+
+    /* 主标题字体大小调整：clamp 的最大值变小 */
+    .typing-text {
+        font-size: clamp(2rem, 5vw, 4rem);
+    }
+
+    /* 副标题调整 */
+    .subtitle {
+        font-size: 1.1rem;
+        letter-spacing: 4px;
+    }
+
+    /* 光标高度调整 */
+    .cursor {
+        height: 4rem;
+    }
+
+    /* 容器最小高度调整 */
+    .typing-text-container {
+        min-height: 4.5rem;
+    }
+}
+
+/* Mobile (屏幕宽度 <= 768px) */
+@media (max-width: 768px) {
+
+    /* 主标题字体大小调整 */
+    .typing-text {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        letter-spacing: -1px;
+    }
+
+    /* 副标题进一步调整 */
+    .subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+        margin-top: 5px;
+    }
+
+    /* 光标高度调整 */
+    .cursor {
+        width: 4px;
+        height: 3rem;
+    }
+
+    /* 容器最小高度调整 */
+    .typing-text-container {
+        min-height: 3.5rem;
+    }
+}

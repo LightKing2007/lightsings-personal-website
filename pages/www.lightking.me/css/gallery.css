@@ -1,0 +1,94 @@
+#gallery {
+    padding: 50px 0;
+    text-align: center;
+}
+
+#gallery h2 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.gallery-row {
+    display: flex;
+    flex-wrap: nowrap;
+    /* 确保所有图片都在一行 */
+    padding: 10px 0;
+    will-change: transform;
+}
+
+.gallery-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* 注意：这里不再有 width: 200%;，我们将宽度计算交给 JS/GSAP */
+.gallery-row {
+    display: flex;
+    padding: 10px 0;
+    /* 确保元素可以被 transform 移动 */
+    will-change: transform;
+}
+
+.gallery-item {
+    width: 20vw;
+    height: 250px;
+    margin-right: 20px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: border 0.3s;
+}
+
+.gallery-item:hover {
+    border: 1px solid var(--color-light);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.2);
+    transition: filter 0.5s;
+}
+
+.gallery-item:hover img {
+    filter: saturate(1);
+}
+
+/* --- gallery.css 响应式调整 --- */
+
+/* Tablet (屏幕宽度 <= 1024px) */
+@media (max-width: 1024px) {
+    #gallery h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
+
+    /* 画廊项目宽度调整：使其在屏幕上可见的项目数量减少 */
+    .gallery-item {
+        width: 30vw;
+        /* 屏幕上大约显示 3 个 */
+        height: 200px;
+        margin-right: 15px;
+    }
+}
+
+/* Mobile (屏幕宽度 <= 768px) */
+@media (max-width: 768px) {
+    #gallery {
+        padding: 30px 0;
+    }
+
+    #gallery h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    /* 画廊项目宽度调整：使其在屏幕上大约显示 2 个 */
+    .gallery-item {
+        width: 45vw;
+        height: 150px;
+        margin-right: 10px;
+    }
+}
